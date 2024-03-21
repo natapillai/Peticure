@@ -99,10 +99,3 @@ The application allows a genuine system user to verify shelters, shelter owners 
 6. Paste URL in Search bar:
    ```bash
     localhost:3000/
-
-## Contribution
-
-- Bhakti Ukey
-- Amrita Nischal
-- Natarajan Lekshmi Narayana Pillai
-- Sachin Sudhakar Pawar 
