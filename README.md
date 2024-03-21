@@ -1,10 +1,5 @@
 # PETICURE - Pet Adoption & Support Platform
 
-- [Presentation](https://wepik.com/share/9ad3fdbf-f140-4588-90da-be0ed1e97872#rs=link)
-
-- [Video Presentation](/Users/akshaysawant/Web_Design_2023/final-project-peticure/Presentation/video.mp4)
-
-
 ## Overview
 
 PETICURE is a comprehensive pet adoption and support platform designed to connect pet enthusiasts with their ideal companions and contribute to the welfare of pets in need. Beyond adoption services, our platform integrates features for facilitating food and toy donations, allowing users to contribute to the well-being of pets awaiting their forever homes. 
