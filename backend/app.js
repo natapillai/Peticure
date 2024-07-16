@@ -27,8 +27,26 @@ const initialize = (app) => {
 
     // MongoDB connection establishment
 
+    // // Connect to MongoDB Atlas
+    // mongoose.connect('mongodb+srv://natapillai:X74zHeTnV3HeZ30E@petapp.cidvjht.mongodb.net/petDB?retryWrites=true&w=majority&appName=petapp');
+
+
+    const mongoURI = process.env.MONGO_URI;
+    if (!mongoURI) {
+        console.error('MongoDB connection string is missing in environment variables');
+        process.exit(1); // Exit the process if the connection string is not set
+    }
+
     // Connect to MongoDB Atlas
-    mongoose.connect('mongodb+srv://natapillai:X74zHeTnV3HeZ30E@petapp.cidvjht.mongodb.net/petDB?retryWrites=true&w=majority&appName=petapp');
+    mongoose.connect(mongoURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log('Connected to MongoDB');
+    }).catch(err => {
+        console.error('Failed to connect to MongoDB', err);
+        process.exit(1); // Exit the process if the connection fails
+    });
 
     // Initialize routes using the provided app instance
     registerRouter(app);
