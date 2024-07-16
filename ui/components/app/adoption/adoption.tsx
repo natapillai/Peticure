@@ -100,11 +100,13 @@ export default function Adoption() {
 
   const emptyDivClasses = ["col-md-3", "no-gutter", styles.emptyDiv].join(" ");
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
   useEffect(() => {
     // Fetch pets from the API
     const fetchPets = async () => {
       try {
-        const response = await fetch("http://localhost:8000/pets");
+        const response = await fetch(`${API_URL}/pets`);
         const data = await response.json();
         setPets(data);
       } catch (error) {
