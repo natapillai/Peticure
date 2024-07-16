@@ -27,11 +27,12 @@
 
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   max-width: 750px;
   gap: 60px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0px;
 }
 
 .contactblock {

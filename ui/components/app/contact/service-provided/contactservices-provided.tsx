@@ -42,13 +42,28 @@ function ContactServicesProvided({ data }: ContactServicesProvidedProps) {
       <section className={styles.contactBlocksSection}>
         <Container>
           <Row>
-            {data.map((service, index) => (
-              <div key={index} className={styles.contactblock}>
-                <h3>{service.serviceName}</h3>
-                <p>{service.serviceDescription}</p>
-                {/* Use service.image and service.href as needed */}
+            <div className={styles.container}>
+              <div className={styles.contactblock}>
+                <h3>Email Address</h3>
+                <a href="mailto:info@webmail.com">peticure@gmail.com</a>
+                <a href="mailto:info@webmail.com">petHelp@gmail.com</a>
               </div>
-            ))}
+              <div className={styles.contactblock}>
+                <h3>Phone Number</h3>
+                <a href="tel:+19234567810">(923) 456-7810</a>
+                <a href="tel:+19087654321">(908) 765-4321</a>
+              </div>
+              <div className={styles.contactblock}>
+                <h3>Office Address</h3>
+                <p>13/A, Jhumando City</p>
+                <p>New York, NYC</p>
+              </div>
+              <div className={styles.contactblock}>
+                <h3>Web Connection</h3>
+                <a href="https://fb.com/webexample" target="_blank" rel="noopener noreferrer">twitter.com/Peticure</a>
+                <a href="https://tw.com/webexample" target="_blank" rel="noopener noreferrer">instagram.com/Peticure</a>
+              </div>
+            </div>
           </Row>
         </Container>
       </section>
