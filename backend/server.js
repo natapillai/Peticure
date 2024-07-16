@@ -12,7 +12,7 @@ const app = express();
 
 
 // Define the port on which the server will listen
-const port = 8000;
+const port = 3000;
 
 // Call the initialize function to set up routes and middleware
 initialize(app);
