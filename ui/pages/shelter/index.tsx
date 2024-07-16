@@ -40,11 +40,13 @@ const ShelterPage: NextPageWithLayout = () => {
 
     const t = useTranslations('Shelter');
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
     useEffect(() => {
         // Fetch shelters from the API
         const fetchShelters = async () => {
             try {
-                const response = await fetch('http://localhost:8000/shelter');
+                const response = await fetch(`${API_URL}/shelter`);
                 const data = await response.json();
                 setShelters(data);
             } catch (error) {

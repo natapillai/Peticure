@@ -25,6 +25,8 @@ const ShelterDetail: NextPageWithLayout = () => {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
     /**
      * Fetches shelter details from the server based on the provided ID and updates the state accordingly.
      * @ {string} id - The ID of the shelter to fetch details for.
@@ -35,7 +37,7 @@ const ShelterDetail: NextPageWithLayout = () => {
             if (!id) return;
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8000/shelter/${id}`);
+                const response = await fetch(`${API_URL}/shelter/${id}`);
                 if (!response.ok) {
                     const errorData = await response.json();
                     throw new Error(errorData.message || 'Shelter not found');

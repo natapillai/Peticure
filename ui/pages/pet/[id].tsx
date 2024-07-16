@@ -22,13 +22,15 @@ const PetsPage: NextPageWithLayout = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
   useEffect(() => {
     const fetchPetDetails = async () => {
       if (!id) {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:8000/pets/${id}`);
+        const response = await fetch(`${API_URL}/pets/${id}`);
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || "Pet not found");

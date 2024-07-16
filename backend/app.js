@@ -28,7 +28,7 @@ const initialize = (app) => {
     // MongoDB connection establishment
 
     // Connect to MongoDB Atlas
-    mongoose.connect('mongodb+srv://assignment9:Assignment09Group02@petapp.gf2t3et.mongodb.net/petDB?retryWrites=true&w=majority');
+    mongoose.connect('mongodb+srv://natapillai:X74zHeTnV3HeZ30E@petapp.cidvjht.mongodb.net/petDB?retryWrites=true&w=majority&appName=petapp');
 
     // Initialize routes using the provided app instance
     registerRouter(app);

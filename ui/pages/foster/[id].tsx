@@ -24,7 +24,7 @@ const FosterDetail: NextPageWithLayout = () => {
     const [foster, setFoster] = useState<Foster | null>(null); // Adjust 'FosterType' according to your data structure
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
     /**
      * Fetches foster details from the server based on the provided ID and updates the state accordingly.
      * @ {string} id - The ID of the foster to fetch details for.
@@ -35,7 +35,7 @@ const FosterDetail: NextPageWithLayout = () => {
             if (!id) return;
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8000/foster/${id}`);
+                const response = await fetch(`${API_URL}/foster/${id}`);
                 if (!response.ok) {
                     const errorData = await response.json();
                     throw new Error(errorData.message || 'Foster not found');

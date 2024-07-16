@@ -38,12 +38,13 @@ const FosterPage: NextPageWithLayout = () => {
     const [fosters, setFosters] = useState<Foster[]>([]);
 
     const t = useTranslations('Foster');
-
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+    
     useEffect(() => {
         // Fetch fosters from the API
         const fetchFosters = async () => {
             try {
-                const response = await fetch('http://localhost:8000/foster');
+                const response = await fetch(`${API_URL}/foster`);
                 const data = await response.json();
                 setFosters(data);
             } catch (error) {
