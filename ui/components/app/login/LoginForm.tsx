@@ -37,10 +37,13 @@ const LoginForm:  NextPageWithLayout = ()  => {
   })
    
   const dispatch = useDispatch<AppDispatch>();
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
   const onLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
         event.preventDefault();
-        const response = await axios.post("http://localhost:8000/user/users/login",user);
+        const response = await axios.post(`${API_URL}/user/users/login`,user);
         dispatch(logIn(user.email))
         dispatch(toggleLoginLogout());
         console.log("Login success", response.data);

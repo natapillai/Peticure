@@ -13,22 +13,31 @@ export interface IShelterMapProps {
  */
 export default function ShelterMap({ address }: IShelterMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
+
+  const MapsAPI_Key = process.env.MAPS_API_KEY;
+
   useEffect(() => {
+
+    if (!MapsAPI_Key) {
+      console.error("Google Maps API key is not defined");
+      return;
+    }
+
     const loader = new Loader({
-      apiKey: "AIzaSyDO_O7C6tSe62R8L3gtMJKQskF0FDE65rM",
+      apiKey: `${MapsAPI_Key}`,
       version: "weekly",
     });
 
-    loader.importLibrary("maps").then(() => {
-      new google.maps.Geocoder().geocode(
-        { address: address },
-        (results, status) => {
-          if (status === "OK" && results) {
+    loader.load().then(() => {
+      if (mapRef.current) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: address }, (results, status) => {
+          if (status === "OK" && results && results[0]) {
             const map = new google.maps.Map(mapRef.current as HTMLElement, {
               center: results[0].geometry.location,
               zoom: 14,
             });
-            const marker = new google.maps.Marker({
+            new google.maps.Marker({
               map: map,
               position: results[0].geometry.location,
             });
@@ -37,10 +46,12 @@ export default function ShelterMap({ address }: IShelterMapProps) {
               `Geocode was not successful for the following reason: ${status}`
             );
           }
-        }
-      );
+        });
+      }
+    }).catch(error => {
+      console.error("Error loading Google Maps: ", error);
     });
-  }, [address]);
+  }, [address, MapsAPI_Key]);
   return (
     <>
       <div className={styles.mapContainer} ref={mapRef} />
