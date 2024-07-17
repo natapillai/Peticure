@@ -1,10 +1,13 @@
 import { Loader } from "@googlemaps/js-api-loader";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./shelter-map.module.scss";
+import { useTranslations } from 'next-intl';
+import { GetStaticPropsContext } from 'next';
 
 export interface IShelterMapProps {
   address: string;
 }
+const MapsAPI = process.env.NEXT_PUBLIC_MAPS_API;
 
 /**
  * Renders a map component displaying a location based on the provided address.
@@ -14,17 +17,20 @@ export interface IShelterMapProps {
 export default function ShelterMap({ address }: IShelterMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
 
-  const MapsAPI_Key = process.env.MAPS_API_KEY;
+  
 
   useEffect(() => {
 
-    if (!MapsAPI_Key) {
+    console.log("Maps API Key:", process.env.NEXT_PUBLIC_MAPS_API);
+
+
+    if (!MapsAPI) {
       console.error("Google Maps API key is not defined");
       return;
     }
 
     const loader = new Loader({
-      apiKey: `${MapsAPI_Key}`,
+      apiKey: `${MapsAPI}`,
       version: "weekly",
     });
 
@@ -51,7 +57,7 @@ export default function ShelterMap({ address }: IShelterMapProps) {
     }).catch(error => {
       console.error("Error loading Google Maps: ", error);
     });
-  }, [address, MapsAPI_Key]);
+  }, [address]);
   return (
     <>
       <div className={styles.mapContainer} ref={mapRef} />
