@@ -30,16 +30,19 @@ const AbuseForm: NextPageWithLayout = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Add logic to submit the form data (e.g., send a request to a server)
+
     try {
       // to prevent reloading of the form
       event.preventDefault();
       console.log("Signup");
       //setLoading(true);
       const response = await axios.post(
-        "http://localhost:8000/abuse",
+        `${API_URL}/abuse`,
         formData
       );
       console.log("", response.data);

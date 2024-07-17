@@ -13,9 +13,12 @@ export interface IShelterMapProps {
  */
 export default function ShelterMap({ address }: IShelterMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
+
+  const MapsAPI_Key = process.env.MAPS_API_KEY;
+
   useEffect(() => {
     const loader = new Loader({
-      apiKey: "AIzaSyDO_O7C6tSe62R8L3gtMJKQskF0FDE65rM",
+      apiKey: `${MapsAPI_Key}`,
       version: "weekly",
     });
 

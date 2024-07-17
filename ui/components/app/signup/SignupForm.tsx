@@ -20,6 +20,8 @@ const SignupForm: NextPageWithLayout = () => {
   // disable user button function till field is entered
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://peticure-be.vercel.app';
+
   const onSingup = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       // to prevent reloading of the form
@@ -27,7 +29,7 @@ const SignupForm: NextPageWithLayout = () => {
       console.log("Signup");
       //setLoading(true);
       const response = await axios.post(
-        "http://localhost:8000/user/users/signup",
+        `${API_URL}/user/users/signup`,
         user
       );
       console.log("Signup Successful", response.data);
